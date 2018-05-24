@@ -1,0 +1,80 @@
+# Ansible Playbook for Subutai Nextcloud blueprint
+---
+
+- hosts: all
+  gather_facts: false
+  remote_user: root
+  tasks: 
+
+    - name: Update
+      raw: apt-get -y --allow-unauthenticated update || true
+
+    - name: Ensure python is available
+      raw: test -e /usr/bin/python || apt install -y --allow-unauthenticated python-minimal
+
+    - name: Ensure python-apt is available
+      raw: test -d /usr/share/python-apt || apt install -y --allow-unauthenticated python-apt
+
+    - name: Upgrade
+      raw: apt-get -y --allow-unauthenticated upgrade
+
+- hosts: nc
+  remote_user: root
+  tasks: 
+
+    - name: Install required debs
+      apt: 
+        name: "{{ item }}"
+        state: present
+        allow_unauthenticated: yes
+      with_items: 
+        - php7.0
+        - php7.0-cgi
+        - php7.0-mysql
+        - php7.0-zip
+        - php7.0-dom
+        - php7.0-xmlwriter
+        - php7.0-xmlreader
+        - php7.0-xml
+        - php7.0-mbstring
+        - php7.0-gd
+        - php7.0-curl
+        - apache2
+        - libapache2-mod-php7.0
+        - unzip 
+
+    - name: Download and unzip HOTGLUE
+      unarchive: 
+        src: "http://hotglue.org/download/hotglue-latest-dev.zip"
+        dest: "/tmp"
+        remote_src: yes
+        validate_certs: no
+
+    - name: Move files
+      command: bash -c "mv /tmp/*hotglue*/* /var/www/html/"
+
+    - name: Change file ownership
+      file: 
+        path: /var/www/html
+        recurse: yes
+        owner: www-data
+        group: www-data
+
+    - name: Change permissions of folder content
+      file:
+        path: /var/www/html/content
+        recurse: yes
+        mode: 0777
+
+    - name: Create user config file
+      command: bash -c "cp /var/www/config.php /var/www/user-config.php"
+
+    - name: Enable htaccess
+      command: bash -c "mv /var/www/htaccess-dist /var/www/.htaccess"
+
+    - name: Restart apache
+      service: 
+        name: apache2
+        state: restarted
+        
+# vim: ts=2 et nowrap autoindent
