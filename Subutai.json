@@ -34,7 +34,7 @@
                 "key": "domain_name",
                 "value": "${domainName}"
             },
-        ]
+        },
         "groups": [
             {
                 "name": "nc",
