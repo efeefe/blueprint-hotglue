@@ -1,4 +1,4 @@
-# Ansible Playbook for Subutai Nextcloud blueprint
+# Ansible Playbook for Subutai HOTGLUE Blueprint
 ---
 
 - hosts: all
@@ -82,7 +82,5 @@
       service: 
         name: apache2
         state: restarted
-
-# {{ db }}
         
 # vim: ts=2 et nowrap autoindent
