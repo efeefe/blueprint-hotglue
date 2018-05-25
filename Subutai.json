@@ -68,5 +68,11 @@
             "default": "SMALL",
             "validation": "TINY,SMALL,MEDIUM,LARGE,HUGE"
         }
+        "password": {
+            "description": "Enter the desired password",
+            "type": "string",
+            "default": "",
+            "validation": "[a-zA-Z0-9]+"
+        },
     }
 }

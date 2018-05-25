@@ -70,14 +70,19 @@
         mode: 0777
 
     - name: Create user config file
-      command: bash -c "cp /var/www/html/config.php /var/www/html/user-config.php"
+      command: bash -c "cp /var/www/html/config.inc.php /var/www/html/user-config.inc.php"
 
     - name: Enable htaccess
       command: bash -c "mv /var/www/html/htaccess-dist /var/www/html/.htaccess"
+
+    - name: Change admin password
+      command: bash -c "sed -i 's/changeme/{{ password }}/g' /var/www/html/user-config.inc.php"
 
     - name: Restart apache
       service: 
         name: apache2
         state: restarted
+
+# {{ db }}
         
 # vim: ts=2 et nowrap autoindent
