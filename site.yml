@@ -18,7 +18,7 @@
     - name: Upgrade
       raw: apt-get -y --allow-unauthenticated upgrade
 
-- hosts: nc
+- hosts: hotglue
   remote_user: root
   tasks: 
 
