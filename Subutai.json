@@ -33,10 +33,6 @@
                 "key": "domain_name",
                 "value": "${domainName}"
             }
-            {
-                "key": "password",
-                "value": "${password}"
-            }
         ],
         "groups": [
             {
@@ -71,12 +67,6 @@
             "type": "enum",
             "default": "SMALL",
             "validation": "TINY,SMALL,MEDIUM,LARGE,HUGE"
-        },
-        "password": {
-            "description": "Enter the desired password",
-            "type": "string",
-            "default": "changeme",
-            "validation": "[a-zA-Z0-9]+"
         }
     }
 }

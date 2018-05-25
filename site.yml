@@ -75,8 +75,8 @@
     - name: Enable htaccess
       command: bash -c "mv /var/www/html/htaccess-dist /var/www/html/.htaccess"
 
-    - name: Change admin password
-      command: bash -c "sed -i 's/changeme/{{ password }}/g' /var/www/html/user-config.inc.php"
+#    - name: Change admin password
+#      command: bash -c "sed -i 's/changeme/{{ password }}/g' /var/www/html/user-config.inc.php"
 
     - name: Restart apache
       service: 
