@@ -43,6 +43,9 @@
         - libapache2-mod-php7.0
         - unzip 
 
+    - name: Remove default index.html
+      command: bash -c "rm /var/www/html/index.html"
+
     - name: Download and unzip HOTGLUE
       unarchive: 
         src: "http://hotglue.org/download/hotglue-latest-dev.zip"
@@ -67,10 +70,10 @@
         mode: 0777
 
     - name: Create user config file
-      command: bash -c "cp /var/www/config.php /var/www/user-config.php"
+      command: bash -c "cp /var/www/html/config.php /var/www/html/user-config.php"
 
     - name: Enable htaccess
-      command: bash -c "mv /var/www/htaccess-dist /var/www/.htaccess"
+      command: bash -c "mv /var/www/html/htaccess-dist /var/www/html/.htaccess"
 
     - name: Restart apache
       service: 
