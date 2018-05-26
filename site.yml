@@ -62,10 +62,13 @@
     - name: Enable htaccess
       command: bash -c "mv /var/www/html/htaccess-dist /var/www/html/.htaccess"
 
+    - name: Remove dist start page
+      command: bash -c "rm -rf /var/www/html/content/start"
+
     - name: Copy Subutai HOTGLUE home page
       copy:
-           src: "./files/teste"
-           dest: "/tmp"
+           src: "./files/start"
+           dest: "/var/www/html/content/"
 
     - name: Change file ownership
       file: 
