@@ -62,6 +62,11 @@
     - name: Enable htaccess
       command: bash -c "mv /var/www/html/htaccess-dist /var/www/html/.htaccess"
 
+    - name: Copy Subutai HOTGLUE home page
+      copy:
+           src: "./files/teste",
+           dest: "/tmp",
+
     - name: Change file ownership
       file: 
         path: /var/www/html
