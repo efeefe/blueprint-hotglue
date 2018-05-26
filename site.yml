@@ -64,8 +64,8 @@
 
     - name: Copy Subutai HOTGLUE home page
       copy:
-           src: "./files/teste",
-           dest: "/tmp",
+           src: "./files/teste"
+           dest: "/tmp"
 
     - name: Change file ownership
       file: 
