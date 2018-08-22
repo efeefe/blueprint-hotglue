@@ -83,8 +83,8 @@
         recurse: yes
         mode: 0777
 
-#    - name: Change admin password
-#      command: bash -c "sed -i 's/changeme/{{ password }}/g' /var/www/html/user-config.inc.php"
+    - name: Change admin password
+      command: bash -c "sed -i 's/changeme/{{ password }}/g' /var/www/html/user-config.inc.php"
 
     - name: Restart apache
       service: 
