@@ -44,12 +44,12 @@
         ]
     },
     "user-variables": {
-	"password": {
-	    "description": "Set up a passowrd for user admin",
-	    "type": "string",
-	    "default": "changeme",
+        "password": {
+            "description": "Enter your desired password for the admin user",
+            "type": "string",
+            "default": "changeme",
             "validation": "[a-zA-Z0-9]+"
-	},
+        },
         "environmentName": {
             "description": "Enter the environment name",
             "type": "string",
