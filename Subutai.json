@@ -33,6 +33,10 @@
                 "key": "domain_name",
                 "value": "${domainName}"
             }
+            {
+                "key": "password",
+                "value": "${password}"
+            }
         ],
         "groups": [
             {
