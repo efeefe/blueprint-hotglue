@@ -59,16 +59,19 @@
     - name: Create user config file
       command: bash -c "cp /var/www/html/user-config.inc.php-dist /var/www/html/user-config.inc.php"
 
+    - name: Change admin password
+      command: bash -c "sed -i 's/changeme/{{ password }}/g' /var/www/html/user-config.inc.php"
+
     - name: Enable htaccess
       command: bash -c "mv /var/www/html/htaccess-dist /var/www/html/.htaccess"
 
-    - name: Remove dist start page
-      command: bash -c "rm -rf /var/www/html/content/start"
+#    - name: Remove dist start page
+#      command: bash -c "rm -rf /var/www/html/content/start"
 
-    - name: Copy Subutai HOTGLUE home page
-      copy:
-           src: "./files/start"
-           dest: "/var/www/html/content/"
+#    - name: Copy Subutai HOTGLUE home page
+#      copy:
+#           src: "./files/start"
+#           dest: "/var/www/html/content/"
 
     - name: Change file ownership
       file: 
@@ -82,9 +85,6 @@
         path: /var/www/html/content
         recurse: yes
         mode: 0777
-
-    - name: Change admin password
-      command: bash -c "sed -i 's/changeme/{{ password }}/g' /var/www/html/user-config.inc.php"
 
     - name: Restart apache
       service: 
