@@ -36,6 +36,10 @@
             {
                 "key": "password",
                 "value": "${password}"
+            },
+            {
+                "key": "username",
+                "value": "${username}"
             }
         ],
         "groups": [
@@ -48,8 +52,14 @@
         ]
     },
     "user-variables": {
+        "username": {
+            "description": "Enter your desired user name",
+            "type": "string",
+            "default": "admin",
+            "validation": "[a-zA-Z0-9]+"
+        },
         "password": {
-            "description": "Enter your desired password for the admin user",
+            "description": "Enter your desired password",
             "type": "string",
             "default": "changeme",
             "validation": "[a-zA-Z0-9]+"

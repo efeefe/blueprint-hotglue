@@ -59,7 +59,10 @@
     - name: Create user config file
       command: bash -c "cp /var/www/html/user-config.inc.php-dist /var/www/html/user-config.inc.php"
 
-    - name: Change admin password
+    - name: Change user name
+      command: bash -c "sed -i 's/admin/{{ username }}/g' /var/www/html/user-config.inc.php"
+
+    - name: Change password
       command: bash -c "sed -i 's/changeme/{{ password }}/g' /var/www/html/user-config.inc.php"
 
     - name: Enable htaccess
